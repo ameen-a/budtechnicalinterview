@@ -32,7 +32,7 @@ namespace BudTechInterview
             {
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
-                // 
+                // "Cannot deserialize the current JSON array" error
                 Country Country = JsonConvert.DeserializeObject<Country>(responseFromServer);
 
             }
