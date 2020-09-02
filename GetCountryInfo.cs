@@ -20,26 +20,26 @@ namespace BudTechInterview
         static void Main(string[] args)
         {
             // create syntactically valid API request
-            string ValidIso = GetValidISO();
+            string ValidIso = GetValidIso();
             string ApiRequest = String.Format("http://api.worldbank.org/v2/country/{0}?format=json", ValidIso);
 
             // send request
             WebRequest request = WebRequest.Create(ApiRequest);
             WebResponse response = request.GetResponse();
 
-            // read and display JSON content
+            //read, then deserialise display JSON content
             using (Stream dataStream = response.GetResponseStream())
             {
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
-
-                Country Country = JsonConvert.DeserializeObject<Country>(responseFromServer.Substring(1, responseFromServer.Length - 2));
+                // 
+                Country Country = JsonConvert.DeserializeObject<Country>(responseFromServer);
 
             }
 
         }
 
-        static string GetValidISO()
+        static string GetValidIso()
         {
             Console.WriteLine("Enter a valid ISO code (2 or 3 letters)");
             
